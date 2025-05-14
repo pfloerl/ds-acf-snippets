@@ -1,10 +1,10 @@
-# acf-vs README
+# ds-acf-snippets README
 
-Welcom to ACF-VS a VS Code Extension with shorthand syntax to register ACF fields via PHP.
+Welcom to ds-acf-snippets, a VS Code Extension with shorthand syntax to register ACF fields via PHP. This project is a fork of [acf-snippets](https://github.com/GustavoGomez092/acf-snippets/tree/main)
 
 ## Features
 
-ACF-VS allows you to access all existing ACF fields via the `!acf-` shorthand syntax.
+ds-acf-snippets allows you to access all existing ACF fields via the `!acf-` shorthand syntax.
 
 ![Preview image](/img/hero.gif)
 
@@ -16,6 +16,6 @@ Copy this extension into the ```.vscode``` folder in your project root and resta
 
 ### 0.0.3
 
-Initial release of ACF-VS
+Initial release of ds-acf-snippets
 
 **Enjoy!**
