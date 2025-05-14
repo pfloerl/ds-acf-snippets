@@ -1,15 +1,15 @@
 {
-  "name": "acf-vs",
-  "displayName": "ACF-VS",
+  "name": "ds-acf-snippets",
+  "displayName": "Devsolution ACF Snippets",
   "description": "A collection of ACF PHP snippets",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.75.0"
   },
-  "publisher": "STRUCKDevTeam",
+  "publisher": "Devsolution",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GustavoGomez092/acf-snippets.git"
+    "url": "https://github.com/pfloerl/acf-snippets"
   },
   "icon": "icon.png",
   "categories": [
