@@ -16,7 +16,8 @@
     "Snippets"
   ],
   "scripts": {
-    "build": "vsce package"
+    "build": "vsce package -o ds-acf-snippets.vsix",
+    "install-extension": "yarn install && yarn build && code --install-extension ds-acf-snippets.vsix"
   },
   "contributes": {
     "snippets": [
