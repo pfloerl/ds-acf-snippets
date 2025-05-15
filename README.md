@@ -4,9 +4,7 @@ Welcome to ds-acf-snippets, a VS Code Extension with shorthand syntax to registe
 
 ## Features
 
-ds-acf-snippets allows you to access all existing ACF fields via the `!acf-` shorthand syntax.
-
-![Preview image](/img/hero.gif)
+ds-acf-snippets allows you to access all existing ACF fields via the `!ds-` shorthand syntax in a `.php` file.
 
 > Tip: These snippets only work on PHP files, Make sure you are within a PHP context when looking for these snippets.
 

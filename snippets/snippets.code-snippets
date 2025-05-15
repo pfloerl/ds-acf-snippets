@@ -1,6 +1,6 @@
 {
     "ACF Layout": {
-        "prefix": "!acf-layout",
+        "prefix": "!ds-layout",
         "body": [
         "array(",
         "    'key' => 'layout_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -17,7 +17,7 @@
         "description": "PHP Syntax for creating an ACF Layout"
     },
     "ACF Heading": {
-        "prefix": "!acf-heading",
+        "prefix": "!ds-heading",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -70,7 +70,7 @@
         "description": "PHP Syntax for creating an ACF Heading"
     },
     "ACF Sub Heading": {
-        "prefix": "!acf-subheading",
+        "prefix": "!ds-subheading",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -123,7 +123,7 @@
         "description": "PHP Syntax for creating an ACF Sub Heading"
     },
     "ACF Text": {
-        "prefix": "!acf-text",
+        "prefix": "!ds-text",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -146,7 +146,7 @@
         "description": "PHP Syntax for creating an ACF Text"
     },
     "ACF Text Area": {
-        "prefix": "!acf-textarea",
+        "prefix": "!ds-textarea",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -171,7 +171,7 @@
         "description": "PHP Syntax for creating an ACF Text Area"
     },
     "ACF Select": {
-        "prefix": "!acf-select",
+        "prefix": "!ds-select",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -201,7 +201,7 @@
         "description": "PHP Syntax for creating an ACF Select"
     },
     "ACF Image": {
-        "prefix": "!acf-image",
+        "prefix": "!ds-image",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -231,7 +231,7 @@
         "description": "PHP Syntax for creating an ACF Image"
     },
     "ACF Image Crop": {
-        "prefix": "!acf-image-crop",
+        "prefix": "!ds-image-crop",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -263,7 +263,7 @@
         "description": "PHP Syntax for creating an ACF Image Crop"
     },
     "ACF Repeater": {
-        "prefix": "!acf-repeater",
+        "prefix": "!ds-repeater",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -291,7 +291,7 @@
         "description": "PHP syntax for creating an ACF Repeater"
     },
     "ACF Link": {
-        "prefix": "!acf-link",
+        "prefix": "!ds-link",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -312,7 +312,7 @@
         "description": "PHP syntax for creating an ACF Link"
     },
     "ACF Post Object": {
-        "prefix": "!acf-post-object",
+        "prefix": "!ds-post-object",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -338,7 +338,7 @@
         "description": "PHP syntax for creating an ACF Post Object"
     },
     "ACF Number": {
-        "prefix": "!acf-number",
+        "prefix": "!ds-number",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -362,7 +362,7 @@
         "description": "PHP Syntax for creating an ACF Number"
     },
     "ACF Email": {
-        "prefix": "!acf-email",
+        "prefix": "!ds-email",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -385,7 +385,7 @@
         "description": "PHP Syntax for creating an ACF Email"
     },
     "ACF Message": {
-        "prefix": "!acf-message",
+        "prefix": "!ds-message",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
