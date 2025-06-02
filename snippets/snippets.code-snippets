@@ -458,4 +458,35 @@
         ],
         "description": "PHP Syntax for creating an ACF Message"
     },
+    "ACF CPT": {
+        "prefix": "!ds-cpt",
+        "body": [
+        "acf_add_local_field_group(array(",
+        "    'key' => 'group_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
+        "    'title' => '${1:cpt} Elements',",
+        "    'location' => array(",
+        "        array(",
+        "            array(",
+        "                'param' => 'post_type',",
+        "                'operator' => '==',",
+        "                'value' => '${2:cpt}',",
+        "            ),",
+        "        ),",
+        "    ),",
+        "    'fields' => array(",
+        "        ${3}",
+        "    ),",
+        "    'position' => 'acf_after_title',",
+        "    'menu_order' => 0,",
+        "    'style' => 'default',",
+        "    'label_placement' => 'top',",
+        "    'instruction_placement' => 'label',",
+        "    'hide_on_screen' => '',",
+        "    'active' => true,",
+        "    'description' => '',",
+        "    'show_in_rest' => 0,",
+        "));"
+        ],
+        "description": "PHP syntax for creating an ACF Custom Post Type"
+    }
 }

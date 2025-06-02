@@ -11,11 +11,12 @@ ds-acf-snippets allows you to access all existing ACF fields via the `!ds-` shor
 Below is a list of available snippets provided by the `ds-acf-snippets` extension, along with their descriptions:
 
 | **Prefix**         | **Description**                                      |
-|---------------------|------------------------------------------------------|
+|---------------------|-----------------------------------------------------|
 | `!ds-layout`       | PHP syntax for creating an ACF Layout.               |
 | `!ds-heading`      | PHP syntax for creating an ACF Heading field.        |
 | `!ds-subheading`   | PHP syntax for creating an ACF Sub Heading field.    |
 | `!ds-text`         | PHP syntax for creating an ACF Text field.           |
+| `!ds-wysiwyg`      | PHP syntax for creating an ACF WYSIWYG field.        |
 | `!ds-textarea`     | PHP syntax for creating an ACF Text Area field.      |
 | `!ds-select`       | PHP syntax for creating an ACF Select field.         |
 | `!ds-image`        | PHP syntax for creating an ACF Image field.          |
@@ -26,6 +27,7 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-number`       | PHP syntax for creating an ACF Number field.         |
 | `!ds-email`        | PHP syntax for creating an ACF Email field.          |
 | `!ds-message`      | PHP syntax for creating an ACF Message field.        |
+| `!ds-cpt`          | PHP syntax for creating an ACF CPT field group.      |
 
 Use these prefixes in your `.php` files to quickly generate ACF field definitions.
 
