@@ -513,5 +513,12 @@
         "));"
         ],
         "description": "PHP syntax for creating an ACF Custom Post Type"
+    },
+    "ACF Key": {
+        "prefix": "!ds-key",
+        "body": [
+        "'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}'",
+        ],
+        "description": "PHP Syntax for creating an ACF Field Key"
     }
 }
