@@ -20,6 +20,7 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-textarea`     | PHP syntax for creating an ACF Text Area field.      |
 | `!ds-select`       | PHP syntax for creating an ACF Select field.         |
 | `!ds-image`        | PHP syntax for creating an ACF Image field.          |
+| `!ds-video`        | PHP syntax for creating an ACF Video field.          |
 | `!ds-image-crop`   | PHP syntax for creating an ACF Image Crop field.     |
 | `!ds-repeater`     | PHP syntax for creating an ACF Repeater field.       |
 | `!ds-link`         | PHP syntax for creating an ACF Link field.           |
