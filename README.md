@@ -29,6 +29,7 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-email`        | PHP syntax for creating an ACF Email field.          |
 | `!ds-message`      | PHP syntax for creating an ACF Message field.        |
 | `!ds-cpt`          | PHP syntax for creating an ACF CPT field group.      |
+| `!ds-toggle`       | PHP syntax for creating an ACF True/False field.     |
 | `!ds-key`          | PHP syntax for creating an ACF Key                   |
 
 Use these prefixes in your `.php` files to quickly generate ACF field definitions.

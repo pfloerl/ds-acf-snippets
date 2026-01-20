@@ -520,5 +520,30 @@
         "'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}'",
         ],
         "description": "PHP Syntax for creating an ACF Field Key"
+    },
+    "ACF True/False": {
+        "prefix": "!ds-toggle",
+        "body": [
+        "array(",
+        "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
+        "    'label' => '${1:Toggle}',",
+        "    'name' => '${2:toggle}',",
+        "    'type' => 'true_false',",
+        "    'instructions' => '',",
+        "    'required' => 0,",
+        "    'conditional_logic' => 0,",
+        "    'wrapper' => array(",
+        "        'width' => '',",
+        "        'class' => '',",
+        "        'id' => '',",
+        "    ),",
+        "    'message' => '',",
+        "    'default_value' => 0,",
+        "    'ui' => 1,",
+        "    'ui_on_text' => 'Yes',",
+        "    'ui_off_text' => 'No',",
+        "),",
+        ],
+        "description": "PHP Syntax for creating an ACF True/False field"
     }
 }
