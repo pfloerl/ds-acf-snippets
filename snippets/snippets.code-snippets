@@ -273,11 +273,11 @@
         "        'class' => '',",
         "        'id' => '',",
         "    ),",
-        "    'return_format' => 'id',",
+        "    'return_format' => 'array',",
         "    'library' => 'all',",
         "    'min_size' => '',",
         "    'max_size' => '',",
-        "    'mime_types' => 'mp4, webm',",
+        "    'mime_types' => 'mp4,webm',",
         "),",
         ],
         "description": "PHP Syntax for creating an ACF Video file upload"
