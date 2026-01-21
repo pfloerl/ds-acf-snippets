@@ -16,6 +16,13 @@
         ],
         "description": "PHP Syntax for creating an ACF Layout"
     },
+    "ACF Heading Wysiwyg": {
+        "prefix": "!ds-heading-wysiwyg",
+        "body": [
+        "ds_heading_wysiwyg_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Heading}', '${3:basic}', '${4:h2}'),"
+        ],
+        "description": "Helper function for creating an ACF Heading"
+    },
     "ACF Heading": {
         "prefix": "!ds-heading",
         "body": [
@@ -241,6 +248,13 @@
         ],
         "description": "PHP Syntax for creating an ACF Select"
     },
+    "ACF Header Image": {
+        "prefix": "!ds-header-image",
+        "body": [
+        "ds_header_image_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Image}'),"
+        ],
+        "description": "Helper function for creating an ACF Header Image"
+    },
     "ACF Image": {
         "prefix": "!ds-image",
         "body": [
@@ -309,6 +323,20 @@
         "),",
         ],
         "description": "Old PHP Syntax for creating an ACF Video file upload"
+    },
+    "ACF Media": {
+        "prefix": "!ds-media",
+        "body": [
+        "ds_media_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Media}'),"
+        ],
+        "description": "Helper function for creating an ACF Media file upload"
+    },
+    "ACF Media Crop": {
+        "prefix": "!ds-media-crop",
+        "body": [
+        "ds_media_crop_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Media}', ${3:1}, ${4:1}),"
+        ],
+        "description": "Helper function for creating an ACF Media Crop"
     },
     "ACF Image Crop": {
         "prefix": "!ds-image-crop",

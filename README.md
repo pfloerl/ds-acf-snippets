@@ -13,6 +13,7 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | **Prefix**         | **Description**                                      |
 |---------------------|-----------------------------------------------------|
 | `!ds-layout`       | PHP syntax for creating an ACF Layout.               |
+| `!ds-heading-wysiwyg`| Helper: ds_heading_wysiwyg_field(key, label, 'basic', 'h2'). |
 | `!ds-heading`      | Helper: ds_heading_field(key, label, default_tag='h2'). |
 | `!ds-heading-old`  | Legacy array-based ACF Heading field.                |
 | `!ds-subheading`   | Helper: ds_heading_field(key, label, default_tag='h3'). |
@@ -21,8 +22,11 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-wysiwyg`      | PHP syntax for creating an ACF WYSIWYG field.        |
 | `!ds-textarea`     | PHP syntax for creating an ACF Text Area field.      |
 | `!ds-select`       | PHP syntax for creating an ACF Select field.         |
+| `!ds-header-image` | Helper: ds_header_image_field(key, label).           |
 | `!ds-image`        | Helper: ds_image_field(key, label).                  |
 | `!ds-image-old`    | Legacy array-based ACF Image field.                  |
+| `!ds-media`        | Helper: ds_media_field(key, label).                  |
+| `!ds-media-crop`   | Helper: ds_media_crop_field(key, label, width=1, height=1). |
 | `!ds-video`        | Helper: ds_video_field(key, label).                  |
 | `!ds-video-old`    | Legacy array-based ACF Video field.                  |
 | `!ds-image-crop`   | Helper: ds_image_crop_field(key, label, width=1, height=1). |
