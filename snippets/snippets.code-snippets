@@ -313,7 +313,7 @@
     "ACF Image Crop": {
         "prefix": "!ds-image-crop",
         "body": [
-        "ds_image_crop_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Image}', '${3:1}', '${4:1}'),"
+        "ds_image_crop_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Image}', ${3:1}, ${4:1}),"
         ],
         "description": "Helper function for creating an ACF Image Crop"
     },
