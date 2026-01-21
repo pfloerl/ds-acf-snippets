@@ -19,6 +19,13 @@
     "ACF Heading": {
         "prefix": "!ds-heading",
         "body": [
+        "ds_heading_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Heading}', '${3:h2}'),"
+        ],
+        "description": "Helper function for creating an ACF Heading"
+    },
+    "ACF Heading (Old)": {
+        "prefix": "!ds-heading-old",
+        "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
         "    'label' => '${1:Heading}',",
@@ -67,10 +74,17 @@
         "    'placeholder' => '',",
         "),",
         ],
-        "description": "PHP Syntax for creating an ACF Heading"
+        "description": "Old PHP syntax for creating an ACF Heading"
     },
     "ACF Sub Heading": {
         "prefix": "!ds-subheading",
+        "body": [
+        "ds_heading_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Sub Heading}', '${3:h3}'),"
+        ],
+        "description": "Helper function for creating an ACF Sub Heading"
+    },
+    "ACF Sub Heading (Old)": {
+        "prefix": "!ds-subheading-old",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -120,7 +134,7 @@
         "    'placeholder' => '',",
         "),",
         ],
-        "description": "PHP Syntax for creating an ACF Sub Heading"
+        "description": "Old PHP syntax for creating an ACF Sub Heading"
     },
     "ACF Text": {
         "prefix": "!ds-text",
@@ -230,6 +244,13 @@
     "ACF Image": {
         "prefix": "!ds-image",
         "body": [
+        "ds_image_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Image}'),"
+        ],
+        "description": "Helper function for creating an ACF Image"
+    },
+    "ACF Image (Old)": {
+        "prefix": "!ds-image-old",
+        "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
         "    'label' => '${1:Image}',",
@@ -255,10 +276,17 @@
         "    'mime_types' => '',",
         "),",
         ],
-        "description": "PHP Syntax for creating an ACF Image"
+        "description": "Old PHP syntax for creating an ACF Image"
     },
     "ACF Video": {
         "prefix": "!ds-video",
+        "body": [
+        "ds_video_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Video}'),"
+        ],
+        "description": "Helper function for creating an ACF Video file upload"
+    },
+    "ACF Video (Old)": {
+        "prefix": "!ds-video-old",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -280,10 +308,17 @@
         "    'mime_types' => 'mp4,webm',",
         "),",
         ],
-        "description": "PHP Syntax for creating an ACF Video file upload"
+        "description": "Old PHP Syntax for creating an ACF Video file upload"
     },
     "ACF Image Crop": {
         "prefix": "!ds-image-crop",
+        "body": [
+        "ds_image_crop_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Image}', '${3:1}', '${4:1}'),"
+        ],
+        "description": "Helper function for creating an ACF Image Crop"
+    },
+    "ACF Image Crop (Old)": {
+        "prefix": "!ds-image-crop-old",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -312,7 +347,7 @@
         "    'mime_types' => '',",
         "),",
         ],
-        "description": "PHP Syntax for creating an ACF Image Crop"
+        "description": "Old PHP syntax for creating an ACF Image Crop"
     },
     "ACF Repeater": {
         "prefix": "!ds-repeater",
@@ -345,6 +380,13 @@
     "ACF Link": {
         "prefix": "!ds-link",
         "body": [
+        "ds_link_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Link}'),"
+        ],
+        "description": "Helper function for creating an ACF Link"
+    },
+    "ACF Link (Old)": {
+        "prefix": "!ds-link-old",
+        "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
         "    'label' => '${1:Link}',",
@@ -361,7 +403,7 @@
         "    'return_format' => 'array',",
         "),"
         ],
-        "description": "PHP syntax for creating an ACF Link"
+        "description": "Old PHP syntax for creating an ACF Link"
     },
     "ACF Post Object": {
         "prefix": "!ds-post-object",

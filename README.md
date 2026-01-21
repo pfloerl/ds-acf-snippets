@@ -13,17 +13,23 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | **Prefix**         | **Description**                                      |
 |---------------------|-----------------------------------------------------|
 | `!ds-layout`       | PHP syntax for creating an ACF Layout.               |
-| `!ds-heading`      | PHP syntax for creating an ACF Heading field.        |
-| `!ds-subheading`   | PHP syntax for creating an ACF Sub Heading field.    |
+| `!ds-heading`      | Helper: ds_heading_field(key, label, default_tag='h2'). |
+| `!ds-heading-old`  | Legacy array-based ACF Heading field.                |
+| `!ds-subheading`   | Helper: ds_heading_field(key, label, default_tag='h3'). |
+| `!ds-subheading-old`| Legacy array-based ACF Sub Heading field.           |
 | `!ds-text`         | PHP syntax for creating an ACF Text field.           |
 | `!ds-wysiwyg`      | PHP syntax for creating an ACF WYSIWYG field.        |
 | `!ds-textarea`     | PHP syntax for creating an ACF Text Area field.      |
 | `!ds-select`       | PHP syntax for creating an ACF Select field.         |
-| `!ds-image`        | PHP syntax for creating an ACF Image field.          |
-| `!ds-video`        | PHP syntax for creating an ACF Video field.          |
-| `!ds-image-crop`   | PHP syntax for creating an ACF Image Crop field.     |
+| `!ds-image`        | Helper: ds_image_field(key, label).                  |
+| `!ds-image-old`    | Legacy array-based ACF Image field.                  |
+| `!ds-video`        | Helper: ds_video_field(key, label).                  |
+| `!ds-video-old`    | Legacy array-based ACF Video field.                  |
+| `!ds-image-crop`   | Helper: ds_image_crop_field(key, label, width=1, height=1). |
+| `!ds-image-crop-old`| Legacy array-based ACF Image Crop field.            |
 | `!ds-repeater`     | PHP syntax for creating an ACF Repeater field.       |
-| `!ds-link`         | PHP syntax for creating an ACF Link field.           |
+| `!ds-link`         | Helper: ds_link_field(key, label).                   |
+| `!ds-link-old`     | Legacy array-based ACF Link field.                   |
 | `!ds-post-object`  | PHP syntax for creating an ACF Post Object field.    |
 | `!ds-number`       | PHP syntax for creating an ACF Number field.         |
 | `!ds-email`        | PHP syntax for creating an ACF Email field.          |
