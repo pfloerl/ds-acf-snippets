@@ -18,9 +18,12 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-heading-old`  | Legacy array-based ACF Heading field.                |
 | `!ds-subheading`   | Helper: ds_heading_field(key, label, default_tag='h3'). |
 | `!ds-subheading-old`| Legacy array-based ACF Sub Heading field.           |
-| `!ds-text`         | PHP syntax for creating an ACF Text field.           |
-| `!ds-wysiwyg`      | PHP syntax for creating an ACF WYSIWYG field.        |
-| `!ds-textarea`     | PHP syntax for creating an ACF Text Area field.      |
+| `!ds-text`         | Helper: ds_text_field(key, label, args={}).          |
+| `!ds-text-old`     | Legacy array-based ACF Text field.                   |
+| `!ds-wysiwyg`      | Helper: ds_wysiwyg_field(key, label, 'basic', 0, {}). |
+| `!ds-wysiwyg-old`  | Legacy array-based ACF WYSIWYG field.                |
+| `!ds-textarea`     | Helper: ds_textarea_field(key, label, rows=4, args={}). |
+| `!ds-textarea-old` | Legacy array-based ACF Text Area field.              |
 | `!ds-select`       | PHP syntax for creating an ACF Select field.         |
 | `!ds-header-image` | Helper: ds_header_image_field(key, label).           |
 | `!ds-image`        | Helper: ds_image_field(key, label).                  |
@@ -43,6 +46,52 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-key`          | PHP syntax for creating an ACF Key                   |
 
 Use these prefixes in your `.php` files to quickly generate ACF field definitions.
+
+## Function Signatures
+
+The following helper functions are available for use in your ACF field definitions:
+
+```php
+/**
+ * Create an ACF Text field using a helper function
+ * @param string $key The field key
+ * @param string $label The field label
+ * @param array $args Additional arguments
+ */
+function ds_text_field($key, $label, $args = [])
+
+/**
+ * Create an ACF WYSIWYG field using a helper function
+ * @param string $key The field key
+ * @param string $label The field label
+ * @param string $toolbar The toolbar style ('basic' or 'full')
+ * @param int $media_upload Whether to enable media upload (0 or 1)
+ * @param array $args Additional arguments
+ */
+function ds_wysiwyg_field($key, $label, $toolbar = 'basic', $media_upload = 0, $args = [])
+
+/**
+ * Create an ACF Text Area field using a helper function
+ * @param string $key The field key
+ * @param string $label The field label
+ * @param int $rows Number of rows
+ * @param array $args Additional arguments
+ */
+function ds_textarea_field($key, $label, $rows = 4, $args = [])
+```
+
+### Usage Examples
+
+```php
+// Text field
+ds_text_field('field_abc123', 'My Text Field');
+
+// WYSIWYG field with full toolbar and media upload enabled
+ds_wysiwyg_field('field_def456', 'My WYSIWYG', 'full', 1);
+
+// Text Area with custom rows
+ds_textarea_field('field_ghi789', 'My Text Area', 6);
+```
 
 ## Installation
 

@@ -146,6 +146,13 @@
     "ACF Text": {
         "prefix": "!ds-text",
         "body": [
+        "ds_text_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Text}'),"
+        ],
+        "description": "Helper function for creating an ACF Text field: ds_text_field($key, $label, $args = [])"
+    },
+    "ACF Text (Old)": {
+        "prefix": "!ds-text-old",
+        "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
         "    'label' => '${1:Text}',",
@@ -164,10 +171,17 @@
         "    'maxlength' => '',",
         "),",
         ],
-        "description": "PHP Syntax for creating an ACF Text"
+        "description": "Legacy array-based ACF Text field
     },
     "ACF WYSIWYG": {
         "prefix": "!ds-wysiwyg",
+        "body": [
+        "ds_wysiwyg_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Text}', '${2:basic}', ${3:0}),"
+        ],
+        "description": "Helper function for creating an ACF WYSIWYG field: ds_wysiwyg_field($key, $label, $toolbar = 'basic', $media_upload = 0, $args = [])"
+    },
+    "ACF WYSIWYG (Old)": {
+        "prefix": "!ds-wysiwyg-old",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -190,10 +204,17 @@
         "    'maxlength' => '',",
         "),",
         ],
-        "description": "PHP Syntax for creating an ACF WYSIWYG"
+        "description": "Legacy array-based ACF WYSIWYG field
     },
     "ACF Text Area": {
         "prefix": "!ds-textarea",
+        "body": [
+        "ds_textarea_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Text}', ${2:4}),"
+        ],
+        "description": "Helper function for creating an ACF Text Area field: ds_textarea_field($key, $label, $rows = 4, $args = [])"
+    },
+    "ACF Text Area (Old)": {
+        "prefix": "!ds-textarea-old",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -215,7 +236,7 @@
         "    'new_lines' => 'br',",
         "),",
         ],
-        "description": "PHP Syntax for creating an ACF Text Area"
+        "description": "Legacy array-based ACF Text Area field
     },
     "ACF Select": {
         "prefix": "!ds-select",
