@@ -14,6 +14,7 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 |---------------------|-----------------------------------------------------|
 | `!ds-layout`       | PHP syntax for creating an ACF Layout.               |
 | `!ds-heading-wysiwyg`| Helper: ds_heading_wysiwyg_field(key, label, 'basic', 'h2'). |
+| `!ds-heading-textarea`| Helper: ds_heading_textarea_field(key, label, default_tag='h2'). |
 | `!ds-heading`      | Helper: ds_heading_field(key, label, default_tag='h2'). |
 | `!ds-heading-old`  | Legacy array-based ACF Heading field.                |
 | `!ds-subheading`   | Helper: ds_heading_field(key, label, default_tag='h3'). |
@@ -78,6 +79,15 @@ function ds_wysiwyg_field($key, $label, $toolbar = 'basic', $media_upload = 0, $
  * @param array $args Additional arguments
  */
 function ds_textarea_field($key, $label, $rows = 4, $args = [])
+
+/**
+ * Create an ACF Heading Textarea field using a helper function
+ * @param string $key The field key
+ * @param string $label The field label
+ * @param string $default_tag The default heading tag (e.g. 'h2')
+ * @param array $args Additional arguments
+ */
+function ds_heading_textarea_field($key, $label, $default_tag = 'h2', $args = [])
 ```
 
 ### Usage Examples

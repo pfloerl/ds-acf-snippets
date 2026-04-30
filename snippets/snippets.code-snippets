@@ -23,6 +23,13 @@
         ],
         "description": "Helper function for creating an ACF Heading"
     },
+    "ACF Heading Textarea": {
+        "prefix": "!ds-heading-textarea",
+        "body": [
+        "ds_heading_textarea_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${2:Heading}', '${3:h2}'),"
+        ],
+        "description": "Helper function for creating an ACF Heading Textarea: ds_heading_textarea_field($key, $label, $default_tag='h2', $args = [])"
+    },
     "ACF Heading": {
         "prefix": "!ds-heading",
         "body": [
