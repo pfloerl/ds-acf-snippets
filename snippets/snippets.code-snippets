@@ -178,7 +178,7 @@
         "    'maxlength' => '',",
         "),",
         ],
-        "description": "Legacy array-based ACF Text field
+        "description": "Legacy array-based ACF Text field"
     },
     "ACF WYSIWYG": {
         "prefix": "!ds-wysiwyg",
@@ -211,7 +211,7 @@
         "    'maxlength' => '',",
         "),",
         ],
-        "description": "Legacy array-based ACF WYSIWYG field
+        "description": "Legacy array-based ACF WYSIWYG field"
     },
     "ACF Text Area": {
         "prefix": "!ds-textarea",
@@ -243,7 +243,7 @@
         "    'new_lines' => 'br',",
         "),",
         ],
-        "description": "Legacy array-based ACF Text Area field
+        "description": "Legacy array-based ACF Text Area field"
     },
     "ACF Select": {
         "prefix": "!ds-select",
