@@ -46,7 +46,33 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-toggle`       | PHP syntax for creating an ACF True/False field.     |
 | `!ds-key`          | PHP syntax for creating an ACF Key                   |
 
+| `!ds-fields`       | Auto-generates all `get_sub_field` variable assignments from the matching config file. |
+
 Use these prefixes in your `.php` files to quickly generate ACF field definitions.
+
+## `!ds-fields` — Auto-generate section variables
+
+Type `!ds-fields` inside a section PHP file and accept the autocomplete suggestion. The extension reads the corresponding config file and generates all `get_sub_field` (or `ds_get_image_data_from_sub_field`) variable assignments in config order.
+
+**Example output:**
+
+```php
+$heading = get_sub_field('heading');
+$image = ds_get_image_data_from_sub_field('image');
+$cropped_image = ds_get_image_data_from_sub_field('cropped_image');
+$link = get_sub_field('link');
+```
+
+**Image detection:** any field whose helper function name or ACF type contains `image` uses `ds_get_image_data_from_sub_field`. All others use `get_sub_field`.
+
+**Path conventions — the extension looks for the config file in two locations:**
+
+| Section file | Config file |
+|---|---|
+| `templates/sections/foo.php` | `templates/fields/foo.php` |
+| `theme/page-templates/sections/foo.php` | `theme/config/acf-fields/elements/fields/foo.php` |
+
+Both raw ACF array format (`'type' => 'image'`) and helper-function format (`ds_image_field(...)`) are supported. If no matching config file is found the suggestion simply does not appear.
 
 ## Function Signatures
 
@@ -111,6 +137,8 @@ ds_textarea_field('field_ghi789', 'My Text Area', 6);
 This creates a ```.vsix``` file from the extension and adds it to the installed extensions. To uninstall it, visit the market place.
 
 ## Changelog
+
+Version 0.0.4 adds `!ds-fields` — a dynamic completion that auto-generates section variable assignments from the matching ACF config file.
 
 Version 0.0.3 removes unused ACF-fields and adds specific fields for devsolution.
 
