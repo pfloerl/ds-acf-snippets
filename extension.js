@@ -70,7 +70,7 @@ function generateCode(fields) {
         const getter = isImage
             ? `ds_get_image_data_from_sub_field('${name}')`
             : `get_sub_field('${name}')`;
-        return `\\$${name} = ${getter};`;
+        return `$${name} = ${getter};`;
     }).join('\n');
 }
 
@@ -95,10 +95,11 @@ function activate(context) {
                 if (!fields || !fields.length) return undefined;
 
                 const item = new vscode.CompletionItem(TRIGGER, vscode.CompletionItemKind.Snippet);
-                item.insertText = new vscode.SnippetString(generateCode(fields));
-                item.documentation = new vscode.MarkdownString('Generates ACF `get_sub_field` variable assignments from the corresponding config file.');
+                item.insertText = generateCode(fields); // plain string — $ is treated literally
                 item.filterText = TRIGGER;
-                item.sortText = '0';
+                item.preselect = true;
+                item.sortText = '!';
+                item.documentation = new vscode.MarkdownString('Generates ACF `get_sub_field` variable assignments from the corresponding config file.');
                 item.range = new vscode.Range(
                     position.translate(0, -TRIGGER.length),
                     position
@@ -106,7 +107,7 @@ function activate(context) {
                 return [item];
             }
         },
-        's'
+        's' // trigger fires when the final 's' of !ds-fields is typed
     );
 
     context.subscriptions.push(provider);
