@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.0.5]
 
+### Added
+
+- `!ds-init` — scaffolds a complete section file: the field assignments plus the `ds_open_section()` / `ds_close_section()` wrapper, with the cursor placed between them.
+
 ### Changed
 
 - `!ds-fields` now resolves the layout array by file name and only generates **top-level** fields — repeaters, groups and flexible content yield the containing field, never their nested sub-fields.

@@ -47,8 +47,28 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-toggle`       | PHP syntax for creating an ACF True/False field.     |
 | `!ds-key`          | PHP syntax for creating an ACF Key                   |
 | `!ds-fields`       | Auto-generates all `get_sub_field` variable assignments from the matching config file. |
+| `!ds-init`         | Scaffolds a whole section file: the variable assignments plus the `ds_open_section()` / `ds_close_section()` wrapper. |
 
 Use these prefixes in your `.php` files to quickly generate ACF field definitions.
+
+## `!ds-init` — Scaffold a section file
+
+Type `!ds-init` in an empty section PHP file to generate the whole file at once — the same variable assignments as `!ds-fields`, wrapped in a PHP block, followed by the section wrapper. The cursor lands between `ds_open_section()` and `ds_close_section()`, ready for the markup.
+
+**Example output** for `three_col_text.php`:
+
+```php
+<?php
+    $columns = get_sub_field('columns');
+    $icon = ds_get_image_data_from_sub_field('icon');
+?>
+
+<?php echo ds_open_section(); ?>
+
+<?php echo ds_close_section(); ?>
+```
+
+Unlike `!ds-fields`, `!ds-init` also inserts when no config file exists yet — you get the wrapper with an empty PHP block.
 
 ## `!ds-fields` — Auto-generate section variables
 
@@ -154,7 +174,7 @@ This creates a ```.vsix``` file from the extension and adds it to the installed 
 
 ## Changelog
 
-Version 0.0.5 reworks `!ds-fields`: bracket-aware config parsing, top-level fields only, correct getter for image fields that return an array, and feedback when nothing can be generated.
+Version 0.0.5 adds `!ds-init` (full section scaffold) and reworks `!ds-fields`: bracket-aware config parsing, top-level fields only, correct getter for image fields that return an array, and feedback when nothing can be generated.
 
 Version 0.0.4 adds `!ds-fields` — a dynamic completion that auto-generates section variable assignments from the matching ACF config file.
 

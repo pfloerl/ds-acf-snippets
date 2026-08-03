@@ -2,8 +2,12 @@ const vscode = require('vscode');
 const fs = require('fs');
 const path = require('path');
 
-const TRIGGER = '!ds-fields';
-const TRIGGER_CHARS = ['!', '-', 's'];
+const FIELDS_TRIGGER = '!ds-fields';
+const INIT_TRIGGER = '!ds-init';
+const TRIGGER_CHARS = ['!', '-', 's', 't'];
+
+// Indentation of the variable assignments inside the section's opening PHP tag.
+const INIT_INDENT = '    ';
 
 // ACF types that carry no value and therefore get no variable.
 const VALUELESS_TYPES = new Set(['tab', 'accordion', 'message']);
@@ -284,84 +288,154 @@ function configCandidates(sectionFilePath) {
     return candidates;
 }
 
-function generateCode(fields) {
+/** One `$var = get_sub_field(…);` line per field. */
+function generateAssignments(fields, indent = '') {
     return fields
         .map(({ name, isImage }) => {
             const getter = isImage
                 ? `ds_get_image_data_from_sub_field('${name}')`
                 : `get_sub_field('${name}')`;
-            return `$${name} = ${getter};`;
+            return `${indent}$${name} = ${getter};`;
         })
         .join('\n');
+}
+
+/**
+ * The section scaffold split at the point where markup goes: the field
+ * assignments inside a leading PHP block, then the section wrapper.
+ */
+function sectionParts(fields) {
+    const header = `<?php\n${generateAssignments(fields, INIT_INDENT)}\n?>`;
+
+    return {
+        before: `${header}\n\n<?php echo ds_open_section(); ?>\n`,
+        after: '\n<?php echo ds_close_section(); ?>',
+    };
+}
+
+/** Full section scaffold; `body` sits between the open and close calls. */
+function generateSection(fields, body = '') {
+    const { before, after } = sectionParts(fields);
+
+    return before + body + after;
 }
 
 /* -------------------------------------------------------------------------- */
 /* Completion provider                                                        */
 /* -------------------------------------------------------------------------- */
 
-function buildItem(position, insertText, detail, documentation) {
-    const item = new vscode.CompletionItem(TRIGGER, vscode.CompletionItemKind.Snippet);
+function buildItem(trigger, position, insertText, detail, documentation) {
+    const item = new vscode.CompletionItem(trigger, vscode.CompletionItemKind.Snippet);
 
-    // Plain string insert text — `$` stays literal instead of becoming a tab stop.
     item.insertText = insertText;
-    item.filterText = TRIGGER;
+    item.filterText = trigger;
     item.detail = detail;
     item.documentation = new vscode.MarkdownString(documentation);
     item.preselect = true;
     item.sortText = '!';
-    item.range = new vscode.Range(position.translate(0, -TRIGGER.length), position);
+    item.range = new vscode.Range(position.translate(0, -trigger.length), position);
 
-    return [item];
+    return item;
+}
+
+function preview(code) {
+    return ['```php', code, '```'].join('\n');
+}
+
+/**
+ * Reads the section's config and reports either its top-level fields or why
+ * there are none. Returns null when the file is not a section at all.
+ */
+function readSectionFields(fileName) {
+    const candidates = configCandidates(fileName);
+    if (!candidates.length) return null;
+
+    const configPath = candidates.find((candidate) => fs.existsSync(candidate));
+    if (!configPath) {
+        return {
+            fields: [],
+            detail: 'No config file found',
+            documentation: ['Looked for:', ...candidates.map((c) => `- \`${c}\``)].join('\n'),
+        };
+    }
+
+    const variableName = path.basename(configPath, '.php');
+    let fields;
+
+    try {
+        fields = parseConfig(fs.readFileSync(configPath, 'utf8'), variableName);
+    } catch (error) {
+        return { fields: [], detail: 'Config file unreadable', documentation: `\`${error.message}\`` };
+    }
+
+    if (!fields.length) {
+        return {
+            fields: [],
+            detail: 'No fields found',
+            documentation: `No \`sub_fields\` on \`$${variableName}\` in \`${configPath}\`.`,
+        };
+    }
+
+    return {
+        fields,
+        configPath,
+        variableName,
+        detail: `${fields.length} field${fields.length === 1 ? '' : 's'} from ${path.basename(configPath)}`,
+    };
+}
+
+/** `!ds-fields` — the variable assignments on their own. */
+function fieldsItem(position, section) {
+    // Plain string insert text — `$` stays literal instead of becoming a tab stop.
+    if (!section.fields.length) {
+        return buildItem(FIELDS_TRIGGER, position, FIELDS_TRIGGER, section.detail, section.documentation);
+    }
+
+    const code = generateAssignments(section.fields);
+
+    return buildItem(
+        FIELDS_TRIGGER,
+        position,
+        code,
+        section.detail,
+        `Top-level fields of \`$${section.variableName}\`:\n\n${preview(code)}`
+    );
+}
+
+/**
+ * `!ds-init` — the whole section scaffold. Inserted even when the config is
+ * missing, since the wrapper is useful on its own; the cursor lands between
+ * the open and close calls.
+ */
+function initItem(position, section) {
+    const { before, after } = sectionParts(section.fields);
+    const snippet = new vscode.SnippetString();
+
+    // appendText escapes `$`, so the assignments survive snippet expansion.
+    snippet.appendText(before);
+    snippet.appendTabstop(0);
+    snippet.appendText(after);
+
+    const scaffold = generateSection(section.fields);
+    const documentation = section.fields.length
+        ? `Section scaffold for \`$${section.variableName}\`:\n\n${preview(scaffold)}`
+        : `${section.documentation}\n\nInserting the wrapper only:\n\n${preview(scaffold)}`;
+
+    return buildItem(INIT_TRIGGER, position, snippet, section.detail, documentation);
 }
 
 function provideCompletionItems(document, position) {
     const linePrefix = document.lineAt(position).text.substring(0, position.character);
-    if (!linePrefix.endsWith(TRIGGER)) return undefined;
 
-    const candidates = configCandidates(document.fileName);
-    if (!candidates.length) return undefined;
+    const trigger = [FIELDS_TRIGGER, INIT_TRIGGER].find((candidate) => linePrefix.endsWith(candidate));
+    if (!trigger) return undefined;
 
-    const configPath = candidates.find((candidate) => fs.existsSync(candidate));
-    if (!configPath) {
-        return buildItem(
-            position,
-            TRIGGER,
-            'No config file found',
-            ['Looked for:', ...candidates.map((candidate) => `- \`${candidate}\``)].join('\n')
-        );
-    }
+    const section = readSectionFields(document.fileName);
+    if (!section) return undefined;
 
-    let content;
-    try {
-        content = fs.readFileSync(configPath, 'utf8');
-    } catch (error) {
-        return buildItem(position, TRIGGER, 'Config file unreadable', `\`${error.message}\``);
-    }
-
-    const variableName = path.basename(configPath, '.php');
-    const fields = parseConfig(content, variableName);
-
-    if (!fields.length) {
-        return buildItem(
-            position,
-            TRIGGER,
-            'No fields found',
-            `No \`sub_fields\` on \`$${variableName}\` in \`${configPath}\`.`
-        );
-    }
-
-    return buildItem(
-        position,
-        generateCode(fields),
-        `${fields.length} field${fields.length === 1 ? '' : 's'} from ${path.basename(configPath)}`,
-        [
-            `Top-level fields of \`$${variableName}\`:`,
-            '',
-            '```php',
-            generateCode(fields),
-            '```',
-        ].join('\n')
-    );
+    return [
+        trigger === INIT_TRIGGER ? initItem(position, section) : fieldsItem(position, section),
+    ];
 }
 
 function activate(context) {
