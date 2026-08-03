@@ -264,6 +264,58 @@ function parseConfig(code, variableName) {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Layout scaffold (config files)                                             */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * True for the field config files a layout lives in — by convention any PHP
+ * file inside a `fields/` directory:
+ *   theme/config/acf-fields/elements/fields/foo.php
+ *   templates/fields/foo.php
+ */
+function isConfigFile(filePath) {
+    return /\/fields\/[^/]+\.php$/.test(filePath.replace(/\\/g, '/'));
+}
+
+/** Same shape as the `!ds-layout` snippet's key: 6 hex + seconds + 6 hex. */
+function generateLayoutKey() {
+    const hex = () => Math.floor(Math.random() * 0x1000000).toString(16).padStart(6, '0');
+    const seconds = String(new Date().getSeconds()).padStart(2, '0');
+
+    return `layout_${hex()}${seconds}${hex()}`;
+}
+
+/** `image-slider` → `Image Slider`. */
+function humanize(name) {
+    return name
+        .split(/[-_\s]+/)
+        .filter(Boolean)
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
+
+/**
+ * The layout array of a config file. Every editable part is passed in already
+ * rendered, so the same template serves both the snippet and its preview.
+ * `variable` carries its own `$`, which has to be escaped in snippet syntax.
+ */
+function layoutCode({ variable, label, name, key, cursor }) {
+    return [
+        `${variable} = array(`,
+        `${INIT_INDENT}'key' => '${key}',`,
+        `${INIT_INDENT}'label' => '${label}',`,
+        `${INIT_INDENT}'name' => '${name}',`,
+        `${INIT_INDENT}'display' => 'block',`,
+        `${INIT_INDENT}'sub_fields' => array(`,
+        `${INIT_INDENT}${INIT_INDENT}${cursor}`,
+        `${INIT_INDENT}),`,
+        `${INIT_INDENT}'min' => 0,`,
+        `${INIT_INDENT}'max' => 0,`,
+        ');',
+    ].join('\n');
+}
+
+/* -------------------------------------------------------------------------- */
 /* Section → config resolution                                                */
 /* -------------------------------------------------------------------------- */
 
@@ -424,11 +476,54 @@ function initItem(position, section) {
     return buildItem(INIT_TRIGGER, position, snippet, section.detail, documentation);
 }
 
+/**
+ * `!ds-init` in a config file — the layout array named after the file. Variable
+ * name and `name` share tabstop 1 so they stay in sync; the label is tabstop 2
+ * and the cursor ends up inside the empty `sub_fields` array.
+ */
+function layoutItem(document, position) {
+    const fileName = path.basename(document.fileName, '.php');
+    // The file name doubles as a PHP variable, so it goes through the same
+    // normalisation as a label (cta-teaser.php → $cta_teaser).
+    const name = parseLabelToName(fileName) || 'layout';
+    const label = humanize(fileName);
+    const key = generateLayoutKey();
+
+    // Only prepend the opening tag when the file does not have one yet.
+    const preceding = document.getText(new vscode.Range(new vscode.Position(0, 0), position));
+    const header = preceding.includes('<?php') ? '' : '<?php\n\n';
+
+    const snippet = new vscode.SnippetString(
+        header +
+            layoutCode({
+                variable: `\\$\${1:${name}}`,
+                label: `\${2:${label}}`,
+                name: '$1',
+                key,
+                cursor: '$0',
+            })
+    );
+
+    const code = layoutCode({ variable: `$${name}`, label, name, key, cursor: '' });
+
+    return buildItem(
+        INIT_TRIGGER,
+        position,
+        snippet,
+        `ACF layout $${name}`,
+        `Layout scaffold for \`${path.basename(document.fileName)}\`:\n\n${preview(code)}`
+    );
+}
+
 function provideCompletionItems(document, position) {
     const linePrefix = document.lineAt(position).text.substring(0, position.character);
 
     const trigger = [FIELDS_TRIGGER, INIT_TRIGGER].find((candidate) => linePrefix.endsWith(candidate));
     if (!trigger) return undefined;
+
+    if (trigger === INIT_TRIGGER && isConfigFile(document.fileName)) {
+        return [layoutItem(document, position)];
+    }
 
     const section = readSectionFields(document.fileName);
     if (!section) return undefined;

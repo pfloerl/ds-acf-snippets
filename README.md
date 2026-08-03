@@ -47,9 +47,33 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-toggle`       | PHP syntax for creating an ACF True/False field.     |
 | `!ds-key`          | PHP syntax for creating an ACF Key                   |
 | `!ds-fields`       | Auto-generates all `get_sub_field` variable assignments from the matching config file. |
-| `!ds-init`         | Scaffolds a whole section file: the variable assignments plus the `ds_open_section()` / `ds_close_section()` wrapper. |
+| `!ds-init`         | In a section file: the variable assignments plus the `ds_open_section()` / `ds_close_section()` wrapper. In a config file: the layout array. |
 
 Use these prefixes in your `.php` files to quickly generate ACF field definitions.
+
+## `!ds-init` — Scaffold a config file
+
+Type `!ds-init` in a config file (any PHP file inside a `fields/` directory) to generate the layout array. Variable name, `label` and `name` are prefilled from the file name and the `layout_` key is generated fresh.
+
+**Example output** for `faqs.php`:
+
+```php
+<?php
+
+$faqs = array(
+    'key' => 'layout_017bb852f15698',
+    'label' => 'FAQs',
+    'name' => 'faqs',
+    'display' => 'block',
+    'sub_fields' => array(
+        
+    ),
+    'min' => 0,
+    'max' => 0,
+);
+```
+
+Tab through the editable parts: the variable name comes first — it is mirrored into `'name'`, so both stay in sync — then the label, then the cursor lands inside the empty `sub_fields` array, ready for the field snippets. The `<?php` tag is only inserted when the file does not already have one.
 
 ## `!ds-init` — Scaffold a section file
 
@@ -173,6 +197,8 @@ ds_textarea_field('field_ghi789', 'My Text Area', 6);
 This creates a ```.vsix``` file from the extension and adds it to the installed extensions. To uninstall it, visit the market place.
 
 ## Changelog
+
+Version 0.0.6 extends `!ds-init` to config files: it scaffolds the layout array with the variable, `label` and `name` taken from the file name and the cursor inside `sub_fields`.
 
 Version 0.0.5 adds `!ds-init` (full section scaffold) and reworks `!ds-fields`: bracket-aware config parsing, top-level fields only, correct getter for image fields that return an array, and feedback when nothing can be generated.
 

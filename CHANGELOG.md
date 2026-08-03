@@ -4,6 +4,12 @@ All notable changes to the "acf-vs" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.6]
+
+### Added
+
+- `!ds-init` in a config file (`fields/foo.php`) now scaffolds the layout array — variable, `label` and `name` prefilled from the file name, a freshly generated `layout_` key, and the cursor inside the empty `sub_fields` array. Variable name and `name` share a tabstop, so editing one updates the other. In section files `!ds-init` is unchanged.
+
 ## [0.0.5]
 
 ### Added
