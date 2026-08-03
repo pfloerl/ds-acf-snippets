@@ -46,7 +46,6 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-cpt`          | PHP syntax for creating an ACF CPT field group.      |
 | `!ds-toggle`       | PHP syntax for creating an ACF True/False field.     |
 | `!ds-key`          | PHP syntax for creating an ACF Key                   |
-
 | `!ds-fields`       | Auto-generates all `get_sub_field` variable assignments from the matching config file. |
 
 Use these prefixes in your `.php` files to quickly generate ACF field definitions.
@@ -64,16 +63,32 @@ $cropped_image = ds_get_image_data_from_sub_field('cropped_image');
 $link = get_sub_field('link');
 ```
 
-**Image detection:** any field whose helper function name or ACF type contains `image` uses `ds_get_image_data_from_sub_field`. All others use `get_sub_field`.
+**Which fields are generated:** only the top-level `sub_fields` of the layout. Fields nested inside a repeater, group or flexible content are *not* generated — the containing field itself is, so you can loop over it yourself:
+
+```php
+$columns = get_sub_field('columns'); // the flexible content field, not its sub-fields
+```
+
+The layout array is the variable named after the file (`cta.php` → `$cta`), matching the convention enforced by `ds_load_acf_layout()`. Helper layout arrays defined earlier in the same file (e.g. `$layouts` for flexible content) are ignored.
+
+**Image detection:** fields that return an attachment ID use `ds_get_image_data_from_sub_field` — the helpers `ds_image_field` / `ds_image_crop_field`, and raw arrays of type `image` / `image_aspect_ratio_crop`. Fields returning the full array (`ds_header_image_field`, or `'return_format' => 'array'`) use `get_sub_field`, since `ds_get_image_data_from_sub_field()` expects an ID.
+
+Skipped entirely: `tab`, `accordion` and `message` fields, which hold no value.
+
+**Name resolution** mirrors `ds_parse_label_to_name()` — the label is used unless the helper's `$args` array overrides it:
+
+```php
+ds_text_field('field_5fb8284670d154', 'Section ID', ['name' => 'id']) // → $id = get_sub_field('id');
+```
 
 **Path conventions — the extension looks for the config file in two locations:**
 
 | Section file | Config file |
 |---|---|
-| `templates/sections/foo.php` | `templates/fields/foo.php` |
 | `theme/page-templates/sections/foo.php` | `theme/config/acf-fields/elements/fields/foo.php` |
+| `templates/sections/foo.php` | `templates/fields/foo.php` |
 
-Both raw ACF array format (`'type' => 'image'`) and helper-function format (`ds_image_field(...)`) are supported. If no matching config file is found the suggestion simply does not appear.
+Both raw ACF array format (`'type' => 'image'`) and helper-function format (`ds_image_field(...)`) are supported, mixed in the same file. Outside a `sections/` directory the suggestion never appears; inside one it always appears, and reports in its detail line if the config file is missing or has no parsable fields.
 
 ## Function Signatures
 
@@ -138,6 +153,8 @@ ds_textarea_field('field_ghi789', 'My Text Area', 6);
 This creates a ```.vsix``` file from the extension and adds it to the installed extensions. To uninstall it, visit the market place.
 
 ## Changelog
+
+Version 0.0.5 reworks `!ds-fields`: bracket-aware config parsing, top-level fields only, correct getter for image fields that return an array, and feedback when nothing can be generated.
 
 Version 0.0.4 adds `!ds-fields` — a dynamic completion that auto-generates section variable assignments from the matching ACF config file.
 
