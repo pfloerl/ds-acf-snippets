@@ -36,6 +36,7 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-image-crop`   | Helper: ds_image_crop_field(key, label, width=1, height=1). |
 | `!ds-image-crop-old`| Legacy array-based ACF Image Crop field.            |
 | `!ds-repeater`     | PHP syntax for creating an ACF Repeater field.       |
+| `!ds-flexible-content`| PHP syntax for creating an ACF Flexible Content field. |
 | `!ds-link`         | Helper: ds_link_field(key, label).                   |
 | `!ds-link-old`     | Legacy array-based ACF Link field.                   |
 | `!ds-post-object`  | PHP syntax for creating an ACF Post Object field.    |

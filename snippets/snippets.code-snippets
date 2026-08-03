@@ -433,6 +433,22 @@
         ],
         "description": "PHP syntax for creating an ACF Repeater"
     },
+    "ACF Flexible Content": {
+        "prefix": "!ds-flexible-content",
+        "body": [
+        "array(",
+        "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
+        "    'label' => '${1:label}',",
+        "    'name' => '${2:name}',",
+        "    'type' => 'flexible_content',",
+        "    'layouts' => ${3:$layout},",
+        "    'button_label' => '${4:Add Row}',",
+        "    'min' => 0,",
+        "    'max' => 0,",
+        "),",
+        ],
+        "description": "PHP syntax for creating an ACF Flexible Content field"
+    },
     "ACF Link": {
         "prefix": "!ds-link",
         "body": [
