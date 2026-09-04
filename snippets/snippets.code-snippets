@@ -434,11 +434,11 @@
         "description": "Old PHP syntax for creating an ACF Repeater"
     },
     "ACF Repeater Field": {
-        "prefix": "!ds-repeater-field",
+        "prefix": "!ds-repeater",
         "body": [
-        "ds_repeater_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Repeater}', array(",
+        "ds_repeater_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Repeater}', [",
         "    ${2}",
-        ")),",
+        "]),",
         ],
         "description": "Helper function for creating an ACF Repeater field: ds_repeater_field($key, $label, $sub_fields = [], $args = [])"
     },
@@ -607,11 +607,11 @@
         "description": "Old PHP syntax for creating an ACF Group"
     },
     "ACF Group Field": {
-        "prefix": "!ds-group-field",
+        "prefix": "!ds-group",
         "body": [
-        "ds_group_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Group}', array(",
+        "ds_group_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Group}', [",
         "    ${2}",
-        ")),",
+        "]),",
         ],
         "description": "Helper function for creating an ACF Group field: ds_group_field($key, $label, $sub_fields = [], $args = [])"
     },
@@ -679,7 +679,7 @@
         "description": "Old PHP syntax for creating an ACF True/False field"
     },
     "ACF Toggle Field": {
-        "prefix": "!ds-toggle-field",
+        "prefix": "!ds-toggle",
         "body": [
         "ds_toggle_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Toggle}'),"
         ],

@@ -35,9 +35,9 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-video-old`    | Legacy array-based ACF Video field.                  |
 | `!ds-image-crop`   | Helper: ds_image_crop_field(key, label, width=1, height=1). |
 | `!ds-image-crop-old`| Legacy array-based ACF Image Crop field.            |
-| `!ds-group-field`  | Helper: ds_group_field(key, label, sub_fields=[], args=[]). |
+| `!ds-group`        | Helper: ds_group_field(key, label, sub_fields=[], args=[]). |
 | `!ds-group-old`    | Legacy array-based ACF Group field.                  |
-| `!ds-repeater-field`| Helper: ds_repeater_field(key, label, sub_fields=[], args=[]). |
+| `!ds-repeater`     | Helper: ds_repeater_field(key, label, sub_fields=[], args=[]). |
 | `!ds-repeater-old` | Legacy array-based ACF Repeater field.               |
 | `!ds-flexible-content`| PHP syntax for creating an ACF Flexible Content field. |
 | `!ds-link`         | Helper: ds_link_field(key, label).                   |
@@ -47,7 +47,7 @@ Below is a list of available snippets provided by the `ds-acf-snippets` extensio
 | `!ds-email`        | PHP syntax for creating an ACF Email field.          |
 | `!ds-message`      | PHP syntax for creating an ACF Message field.        |
 | `!ds-cpt`          | PHP syntax for creating an ACF CPT field group.      |
-| `!ds-toggle-field` | Helper: ds_toggle_field(key, label, args=[]).        |
+| `!ds-toggle`       | Helper: ds_toggle_field(key, label, args=[]).        |
 | `!ds-toggle-old`   | Legacy array-based ACF True/False field.             |
 | `!ds-heading-tag`  | PHP syntax for a standalone ACF Heading Tag select field. |
 | `!ds-key`          | PHP syntax for creating an ACF Key                   |
