@@ -438,6 +438,8 @@
         "body": [
         "ds_repeater_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Repeater}', [",
         "    ${2}",
+        "], [",
+        "    'button_label' => '${3:Add Item}',",
         "]),",
         ],
         "description": "Helper function for creating an ACF Repeater field: ds_repeater_field($key, $label, $sub_fields = [], $args = [])"
