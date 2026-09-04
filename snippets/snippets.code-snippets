@@ -405,8 +405,8 @@
         ],
         "description": "Old PHP syntax for creating an ACF Image Crop"
     },
-    "ACF Repeater": {
-        "prefix": "!ds-repeater",
+    "ACF Repeater (Old)": {
+        "prefix": "!ds-repeater-old",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -431,7 +431,16 @@
         "    ),",
         "),",
         ],
-        "description": "PHP syntax for creating an ACF Repeater"
+        "description": "Old PHP syntax for creating an ACF Repeater"
+    },
+    "ACF Repeater Field": {
+        "prefix": "!ds-repeater-field",
+        "body": [
+        "ds_repeater_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Repeater}', array(",
+        "    ${2}",
+        ")),",
+        ],
+        "description": "Helper function for creating an ACF Repeater field: ds_repeater_field($key, $label, $sub_fields = [], $args = [])"
     },
     "ACF Flexible Content": {
         "prefix": "!ds-flexible-content",
@@ -573,8 +582,8 @@
         ],
         "description": "PHP Syntax for creating an ACF Message"
     },
-    "ACF Group": {
-        "prefix": "!ds-group",
+    "ACF Group (Old)": {
+        "prefix": "!ds-group-old",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -595,7 +604,16 @@
         "    ),",
         "),",
         ],
-        "description": "PHP Syntax for creating an ACF Message"
+        "description": "Old PHP syntax for creating an ACF Group"
+    },
+    "ACF Group Field": {
+        "prefix": "!ds-group-field",
+        "body": [
+        "ds_group_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Group}', array(",
+        "    ${2}",
+        ")),",
+        ],
+        "description": "Helper function for creating an ACF Group field: ds_group_field($key, $label, $sub_fields = [], $args = [])"
     },
     "ACF CPT": {
         "prefix": "!ds-cpt",
@@ -635,8 +653,8 @@
         ],
         "description": "PHP Syntax for creating an ACF Field Key"
     },
-    "ACF True/False": {
-        "prefix": "!ds-toggle",
+    "ACF True/False (Old)": {
+        "prefix": "!ds-toggle-old",
         "body": [
         "array(",
         "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
@@ -658,6 +676,49 @@
         "    'ui_off_text' => 'No',",
         "),",
         ],
-        "description": "PHP Syntax for creating an ACF True/False field"
+        "description": "Old PHP syntax for creating an ACF True/False field"
+    },
+    "ACF Toggle Field": {
+        "prefix": "!ds-toggle-field",
+        "body": [
+        "ds_toggle_field('field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}', '${1:Toggle}'),"
+        ],
+        "description": "Helper function for creating an ACF Toggle field: ds_toggle_field($key, $label, $args = [])"
+    },
+    "ACF Heading Tag": {
+        "prefix": "!ds-heading-tag",
+        "body": [
+        "array(",
+        "    'key' => 'field_${RANDOM_HEX}${CURRENT_SECOND}${RANDOM_HEX}',",
+        "    'label' => '${1:Heading} Tag',",
+        "    'name' => '${2:heading}_tag',",
+        "    'type' => 'select',",
+        "    'instructions' => '',",
+        "    'required' => 0,",
+        "    'conditional_logic' => 0,",
+        "    'wrapper' => array(",
+        "        'width' => '20',",
+        "        'class' => '',",
+        "        'id' => '',",
+        "    ),",
+        "    'choices' => array(",
+        "        'h1' => 'h1',",
+        "        'h2' => 'h2',",
+        "        'h3' => 'h3',",
+        "        'h4' => 'h4',",
+        "        'h5' => 'h5',",
+        "        'h6' => 'h6',",
+        "        'span' => 'Text',",
+        "    ),",
+        "    'default_value' => '${3:h2}',",
+        "    'allow_null' => 0,",
+        "    'multiple' => 0,",
+        "    'ui' => 0,",
+        "    'return_format' => 'value',",
+        "    'ajax' => 0,",
+        "    'placeholder' => '',",
+        "),",
+        ],
+        "description": "PHP syntax for creating a standalone ACF Heading Tag select field"
     }
 }
